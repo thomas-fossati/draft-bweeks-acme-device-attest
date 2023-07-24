@@ -4,8 +4,8 @@
 
 ACME Working Group                                              B. Weeks
 Internet-Draft                                                    Google
-Intended status: Standards Track                        12 December 2022
-Expires: 15 June 2023
+Intended status: Standards Track                            24 July 2023
+Expires: 25 January 2024
 
 
  Automated Certificate Management Environment (ACME) Device Attestation
@@ -33,11 +33,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 June 2023.
+   This Internet-Draft will expire on 25 January 2024.
 
 Copyright Notice
 
-   Copyright (c) 2022 IETF Trust and the persons identified as the
+   Copyright (c) 2023 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -60,10 +60,11 @@ Table of Contents
    7.  IANA Considerations
      7.1.  ACME Identifier Types
      7.2.  ACME Validation Method
-     7.3.  Attestation statement formats
-       7.3.1.  WebAuthn Attestation Statement Format Identifiers for
+     7.3.  New Error Types
+     7.4.  Attestation statement formats
+       7.4.1.  WebAuthn Attestation Statement Format Identifiers for
                Certificate Request Protocols
-       7.3.2.  WebAuthn Extension Identifiers for Certificate Request
+       7.4.2.  WebAuthn Extension Identifiers for Certificate Request
                Protocols
    8.  Normative References
    Appendix A.  Enterprise PKI
@@ -273,7 +274,24 @@ Table of Contents
 
                                   Table 2
 
-7.3.  Attestation statement formats
+7.3.  New Error Types
+
+   This document adds the following entries to the ACME Error Type
+   registry:
+
+    +=========================+===========================+===========+
+    | Type                    | Description               | Reference |
+    +=========================+===========================+===========+
+    | badAttestationStatement | The attestation statement | RFC XXXX  |
+    |                         | is unacceptable (e.g. not |           |
+    |                         | signed by an attestation  |           |
+    |                         | authority trusted by the  |           |
+    |                         | CA)                       |           |
+    +-------------------------+---------------------------+-----------+
+
+                                  Table 3
+
+7.4.  Attestation statement formats
 
    Section 2.1 of [RFC8809] describes registration of new attestation
    statement format types used when authenticating users via [WebAuthn].
@@ -295,7 +313,7 @@ Table of Contents
    page at the discretion of the expert(s), who may differ from the
    experts associated with the registry established by [RFC8809].
 
-7.3.1.  WebAuthn Attestation Statement Format Identifiers for
+7.4.1.  WebAuthn Attestation Statement Format Identifiers for
         Certificate Request Protocols
 
    WebAuthn attestation statement format identifiers are strings whose
@@ -307,7 +325,7 @@ Table of Contents
 
    Registered attestation statement format identifiers are those that
    have been added to the registry by following the procedure in
-   Section 7.3.1.1.
+   Section 7.4.1.1.
 
    Each attestation statement format identifier added to this registry
    MUST be unique amongst the set of registered attestation statement
@@ -322,7 +340,7 @@ Table of Contents
    designated experts determine that there is a compelling reason to
    allow an exception.
 
-7.3.1.1.  Registering Attestation Statement Format Identifiers
+7.4.1.1.  Registering Attestation Statement Format Identifiers
 
    WebAuthn attestation statement format identifiers are registered
    using the Specification Required policy (see Section 4.6 of
@@ -340,7 +358,7 @@ Table of Contents
 
    *  WebAuthn Attestation Statement Format Identifier:
 
-      -  An identifier meeting the requirements given in Section 7.3.1.
+      -  An identifier meeting the requirements given in Section 7.4.1.
 
    *  Description:
 
@@ -374,9 +392,9 @@ Table of Contents
    requirements defined, including the need to reference a
    specification.
 
-7.3.1.2.  Registration Request Processing
+7.4.1.2.  Registration Request Processing
 
-   As noted in Section 7.3.1.1, WebAuthn attestation statement format
+   As noted in Section 7.4.1.1, WebAuthn attestation statement format
    identifiers are registered using the Specification Required policy.
 
    The expert(s) will clearly identify any issues that cause a
@@ -387,7 +405,7 @@ Table of Contents
    registration will be processed.  The IESG is the arbiter of any
    objection.
 
-7.3.1.3.  Initial Values in the WebAuthn Attestation Statement Format
+7.4.1.3.  Initial Values in the WebAuthn Attestation Statement Format
           Identifiers for Certificate Request Protocols Registry
 
    The initial values for the "WebAuthn Attestation Statement Format
@@ -402,7 +420,7 @@ Table of Contents
 
       -  W3C Web Authentication Working Group (public-webauthn@w3.org)
 
-7.3.2.  WebAuthn Extension Identifiers for Certificate Request Protocols
+7.4.2.  WebAuthn Extension Identifiers for Certificate Request Protocols
 
    WebAuthn extension identifiers are strings whose semantic, syntactic,
    and string-matching criteria are specified in the "Extension
@@ -410,7 +428,7 @@ Table of Contents
    20190304/#sctn-extension-id) section of [WebAuthn].
 
    Registered extension identifiers are those that have been added to
-   the registry by following the procedure in Section 7.3.2.1.
+   the registry by following the procedure in Section 7.4.2.1.
 
    Each extension identifier added to this registry MUST be unique
    amongst the set of registered extension identifiers.
@@ -423,7 +441,7 @@ Table of Contents
    manner unless the designated experts determine that there is a
    compelling reason to allow an exception.
 
-7.3.2.1.  Registering Extension Identifiers
+7.4.2.1.  Registering Extension Identifiers
 
    WebAuthn extension identifiers are registered using the Specification
    Required policy (see Section 4.6 of [RFC8126]).
@@ -439,7 +457,7 @@ Table of Contents
 
    *  WebAuthn Extension Identifier:
 
-      -  An identifier meeting the requirements given in Section 7.3.2.
+      -  An identifier meeting the requirements given in Section 7.4.2.
 
    *  Description:
 
@@ -472,9 +490,9 @@ Table of Contents
    are subject to the requirements defined, including the need to
    reference a specification.
 
-7.3.2.2.  Registration Request Processing
+7.4.2.2.  Registration Request Processing
 
-   As noted in Section 7.3.2.1, WebAuthn extension identifiers are
+   As noted in Section 7.4.2.1, WebAuthn extension identifiers are
    registered using the Specification Required policy.
 
    The expert(s) will clearly identify any issues that cause a
@@ -485,7 +503,7 @@ Table of Contents
    registration will be processed.  The IESG is the arbiter of any
    objection.
 
-7.3.2.3.  Initial Values in the WebAuthn Extension Identifiers Registry
+7.4.2.3.  Initial Values in the WebAuthn Extension Identifiers Registry
 
    The initial values for the "WebAuthn Extension Identifiers" registry
    have been populated with the values listed in the "WebAuthn Extension
